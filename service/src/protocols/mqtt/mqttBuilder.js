@@ -1,10 +1,6 @@
 var { initClient, mqttClient } = require("./initializerMQTT");
 
-var {
-  TOPIC_PUBLISH,
-  TOPIC_SUBSCRIB,
-  subs_Option,
-} = require("./configurationMQTT");
+var { TOPIC_SUBSCRIB } = require("./configurationMQTT");
 
 function subscribeTopic() {
   mqttClient = initClient();
