@@ -1,9 +1,9 @@
-var { initClient } = require("./mqtt/initializerMQTT");
+var { initMQTTConnections } = require("./mqtt/initializerMQTT");
 
-class InitializerIoTProtocols {
-  constructor() {
-    initClient();
-  }
+function start() {
+  initMQTTConnections();
 }
 
-module.exports = InitializerIoTProtocols;
+module.exports = {
+  startProtocols: start(),
+};

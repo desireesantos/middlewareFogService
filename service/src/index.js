@@ -1,2 +1,4 @@
-var Translator = require("./entities/translator");
-new Translator("Dummy message", "mqtt");
+var fogToCloud = require("./flow/fogToCloud");
+
+fogToCloud.start();
+// start CloudToFog.start()

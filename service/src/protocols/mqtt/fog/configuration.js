@@ -1,11 +1,11 @@
-const BROKER_URL = "mqtt://test.mosquitto.org";
+const FOG_BROKER_URL = "mqtt://test.mosquitto.org";
 const TOPIC_SUBSCRIB = "MiddlewareFog/edge";
 const TOPIC_PUBLISH = "MiddlewareFog/edge";
 const CLIENT_ID = "MiddleFog1000";
 var PORT = 1883;
 
 const defaultOption = {
-  host: BROKER_URL,
+  host: FOG_BROKER_URL,
   port: PORT,
   clientId: CLIENT_ID,
   clean: false,
@@ -24,7 +24,7 @@ const subscribeOption = {
 module.exports = {
   option: defaultOption,
   subs_Option: subscribeOption,
-  BROKER_URL: BROKER_URL,
+  FOG_BROKER_URL: FOG_BROKER_URL,
   TOPIC_SUBSCRIB: TOPIC_SUBSCRIB,
   TOPIC_PUBLISH: TOPIC_PUBLISH,
 };

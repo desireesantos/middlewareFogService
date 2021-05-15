@@ -1,21 +1,18 @@
 const Protocol = require("../constant/enumsProtocols");
-const { subscribe } = require("../protocols/mqtt/mqttBuilder");
+var { publishToCloud } = require("../protocols/mqtt/cloud/publishToCloud");
 
 class Translator {
-  constructor(payload, currentProtocol) {
-    if (!currentProtocol | !payload) {
+  constructor() {}
+
+  build(dataToTransport) {
+    const { message, protocol, isDataToCloud } = dataToTransport;
+    if (!protocol | !message) {
       throw new Error("Translator not well defined");
     }
-    this._payload = payload;
-    this._protocol = currentProtocol.toLowerCase();
-    this.build();
-  }
-
-  build() {
-    switch (this._protocol) {
+    switch (protocol) {
       case Protocol.MQTT:
         console.log("MQTT");
-        subscribe();
+        isDataToCloud ? publishToCloud(message) : () => {};
         break;
 
       case Protocol.COAP:
