@@ -1,4 +1,3 @@
-var fogToCloud = require("./flow/fogToCloud");
+var middleware = require("./flow/middleware");
 
-fogToCloud.start();
-// start CloudToFog.start()
+middleware.start();

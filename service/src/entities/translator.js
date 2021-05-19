@@ -1,5 +1,6 @@
 const Protocol = require("../constant/enumsProtocols");
 var { publishToCloud } = require("../protocols/mqtt/cloud/publishToCloud");
+var { publishToFog } = require("../protocols/mqtt/fog/publishToFog");
 
 class Translator {
   constructor() {}
@@ -11,8 +12,7 @@ class Translator {
     }
     switch (protocol) {
       case Protocol.MQTT:
-        console.log("MQTT");
-        isDataToCloud ? publishToCloud(message) : () => {};
+        isDataToCloud ? publishToCloud(message) : publishToFog(message);
         break;
 
       case Protocol.COAP:

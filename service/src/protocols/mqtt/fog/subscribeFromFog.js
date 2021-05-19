@@ -1,13 +1,14 @@
 var { TOPIC_SUBSCRIB } = require("./configuration");
-var Translator = require("../../../entities/translator");
-var { buildData } = require("../../../entities/dataToTransport");
 const Protocol = require("../../../constant/enumsProtocols");
 const Direction = require("../../../constant/enumsFogCloud");
+var { buildData } = require("../../../entities/dataToTransport");
+
+var Translator = require("../../../entities/translator");
 var translator = new Translator();
 
 function getDataFromFrog(mqtt) {
   mqtt.on("connect", function () {
-    console.log("--- CONNECTED --- ");
+    console.log("--- SUBSCRIBE FOG TOPIC --- ");
 
     mqtt.subscribe(TOPIC_SUBSCRIB);
     mqtt.on("message", function (topic, message) {
@@ -17,7 +18,7 @@ function getDataFromFrog(mqtt) {
       const dataToSend = buildData(
         Protocol.MQTT,
         message.toString(),
-        Direction.TO_FOG
+        Direction.TO_CLOUD
       );
       translator.build(dataToSend);
     });

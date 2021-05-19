@@ -11,6 +11,8 @@ let sendMessageToCloud = (message) => {
   };
 
   sqs.sendMessage(params, function (err, data) {
+    console.log("--- PUBLISH TO CLOUD --- ");
+
     if (err) {
       console.log("Receive Error", err);
     } else {

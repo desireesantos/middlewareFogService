@@ -1,6 +1,6 @@
 const FOG_BROKER_URL = "mqtt://test.mosquitto.org";
 const TOPIC_SUBSCRIB = "MiddlewareFog/edge";
-const TOPIC_PUBLISH = "MiddlewareFog/edge";
+const TOPIC_PUBLISH = "MiddlewareFog/edge/device";
 const CLIENT_ID = "MiddleFog1000";
 var PORT = 1883;
 
@@ -16,7 +16,7 @@ const defaultOption = {
 };
 
 const subscribeOption = {
-  qos: 1,
+  qos: 0,
   rap: false,
   dup: true,
 };
