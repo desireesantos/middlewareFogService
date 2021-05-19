@@ -1,7 +1,7 @@
-var { initMQTTConnections } = require("./mqtt/initializerMQTT");
+var { mqttInit } = require("./mqtt/initializerMQTT");
 
 function start() {
-  initMQTTConnections();
+  mqttInit();
 }
 
 module.exports = {

@@ -21,6 +21,6 @@ function _cloudSubscribe() {
 }
 
 module.exports = {
-  initMQTTConnections: () => connectMQTT(),
+  mqttInit: () => connectMQTT(),
   mqttClient: () => mqtt,
 };
