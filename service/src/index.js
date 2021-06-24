@@ -1,3 +1,3 @@
-var middleware = require("./flow/middleware");
+const middleware = require("./flow/middleware");
 
 middleware.start();

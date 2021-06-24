@@ -8,5 +8,5 @@ function sendMessageToFog(message) {
 }
 
 module.exports = {
-  publishToFog: (data) => sendMessageToFog(data),
+  publish: (data) => sendMessageToFog(data),
 };

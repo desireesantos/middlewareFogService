@@ -1,4 +1,4 @@
-var { startProtocols } = require("../protocols/initializer");
+const { startProtocols } = require("../protocols/initializer");
 
 module.exports = {
   start: () => startProtocols,

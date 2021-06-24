@@ -22,5 +22,5 @@ let sendMessageToCloud = (message) => {
 };
 
 module.exports = {
-  publishToCloud: (data) => sendMessageToCloud(data),
+  publish: (data) => sendMessageToCloud(data),
 };
