@@ -12,8 +12,8 @@ var translator = new Translator();
 
 AWS.config.update({
   region: "sa-east-1",
-  accessKeyId: "AKIAUVUUUIWJJ5QAYXWW",
-  secretAccessKey: "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",
+  accessKeyId: "",
+  secretAccessKey: "",
 });
 
 function getMessageFromCloud() {

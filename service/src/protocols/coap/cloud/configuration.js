@@ -1,4 +1,4 @@
-const FOG_SERVER_HOSTNAME = "127.0.0.1"; //"54.207.100.54";
+const FOG_SERVER_HOSTNAME = "54.207.100.54";
 const FOG_RESOURCE_SUB_PATHNAME = "middlewareToFog";
 const FOG_RESOURCE_PUB_PATHNAME = "middlewareToCloud";
 var build_COAP_Topics = ["middlewareToCloud", "middlewareToFog"];
