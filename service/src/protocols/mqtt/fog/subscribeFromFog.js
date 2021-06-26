@@ -1,4 +1,5 @@
-var { TOPIC_SUBSCRIB } = require("./configuration");
+var mqtt = require("mqtt");
+var { TOPIC_SUBSCRIB, FOG_BROKER_URL } = require("./configuration");
 const Protocol = require("../../../constant/enumsProtocols");
 const Direction = require("../../../constant/enumsFogCloud");
 var { buildData } = require("../../../entities/dataToTransport");
@@ -6,12 +7,14 @@ var { buildData } = require("../../../entities/dataToTransport");
 var Translator = require("../../../entities/translator");
 var translator = new Translator();
 
-function getDataFromFrog(mqtt) {
-  mqtt.on("connect", function () {
+function getDataFromFrog() {
+  var client = mqtt.connect(FOG_BROKER_URL);
+
+  client.on("connect", function () {
     console.log("--- SUBSCRIBE FOG TOPIC --- ");
 
-    mqtt.subscribe(TOPIC_SUBSCRIB);
-    mqtt.on("message", function (topic, message) {
+    client.subscribe(TOPIC_SUBSCRIB);
+    client.on("message", function (topic, message) {
       console.log("[Received] topic: " + topic.toString());
       console.log("[Received] message: " + message.toString());
 
@@ -26,5 +29,5 @@ function getDataFromFrog(mqtt) {
 }
 
 module.exports = {
-  subscribeTopic: (mqttClient) => getDataFromFrog(mqttClient),
+  subscribeTopic: () => getDataFromFrog(),
 };

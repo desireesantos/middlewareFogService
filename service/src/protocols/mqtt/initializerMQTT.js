@@ -1,22 +1,19 @@
-var mqtt = require("mqtt");
-var { FOG_BROKER_URL } = require("./fog/configuration");
 var fogbroker = require("./fog/subscribeFromFog");
 var cloudBroker = require("./cloud/subscribeFromCloud");
 
 function connectMQTT() {
   console.log("Start MQTT connection FOG");
-  _fogSubscribe();
+  fogSubscribe();
 
   console.log("Start MQTT connection CLOUD");
-  _cloudSubscribe();
+  cloudSubscribe();
 }
 
-function _fogSubscribe() {
-  var client = mqtt.connect(FOG_BROKER_URL);
-  fogbroker.subscribeTopic(client);
+function fogSubscribe() {
+  fogbroker.subscribeTopic();
 }
 
-function _cloudSubscribe() {
+function cloudSubscribe() {
   cloudBroker.subscribeTopic();
 }
 
