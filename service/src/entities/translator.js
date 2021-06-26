@@ -8,7 +8,7 @@ class Translator {
 
   build(dataToTransport) {
     const { message, protocol, isDataToCloud } = dataToTransport;
-    if (!protocol) {
+    if (!protocol || !message) {
       throw new Error("Translator not well defined");
     }
     switch (protocol) {

@@ -1,21 +1,12 @@
-var coap = require("coap");
-var { publish_connection } = require("./configuration");
+const { publish_connection } = require("./configuration");
+var { publishMessage } = require("../domain/Publisher");
+var PublisherConfigObject = require("./../domain/PublisherConfigObject");
+const config = new PublisherConfigObject(publish_connection);
 
 function publishTopic(message) {
-  var req = coap.request(publish_connection);
-
-  req.write(JSON.stringify(message));
-  req.on("response", function (res) {
-    res.on("data", function (data) {
-      console.log("CoaP publish ", Buffer.from(data).toString());
-    });
-    res.on("end", function () {
-      console.log("Success");
-    });
-  });
-  req.end();
+  publishMessage(message, config);
 }
 
 module.exports = {
-  publishTopic: (data) => publishTopic(data),
+  publishTopic: (message) => publishTopic(message),
 };

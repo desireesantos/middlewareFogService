@@ -1,32 +1,52 @@
-var fogServer = require("./fog/subscribeFromFog");
-var CoapConnection = require("./domain/CoapConnection");
-const {
-  topics,
-  publish_connection,
-  subscribe_connection,
-} = require("./cloud/configuration");
-var CoapSetup = require("./domain/CoapSetup");
+const Direction = require("../../constant/enumsFogCloud");
+
+var SubscriberConfigObject = require("./domain/SubscriberConfigObject");
+var { subscriber } = require("./domain/Subscriber");
+
+const cloudConfig = require("./cloud/configuration");
+const fogConfig = require("./fog/configuration");
+
+var { createTopics } = require("./domain/CreateTopics");
+var CreateTopicObject = require("./domain/CreateTopicObject");
 
 function connectCOAP() {
-  // console.log("Start CoAP connection FOG");
-  // _fogSubscribe();
+  createFogTopics();
+  createCloudTopics();
 
-  console.log("Start CoAP connection CLOUD");
-  _cloudSubscribe();
+  fogSubscribe();
+  cloudSubscribe();
 }
 
-function _fogSubscribe() {
-  fogServer.subscribe();
-}
-
-function _cloudSubscribe() {
-  coapCloudSetup = new CoapSetup(
-    topics,
-    publish_connection,
-    subscribe_connection
+function createFogTopics() {
+  const config = new CreateTopicObject(
+    fogConfig.publish_connection,
+    fogConfig.topics
   );
-  cloud = new CoapConnection(coapCloudSetup);
-  cloud.subscribeTopic();
+  createTopics(config);
+}
+
+function createCloudTopics() {
+  const config = new CreateTopicObject(
+    cloudConfig.publish_connection,
+    cloudConfig.topics
+  );
+  createTopics(config);
+}
+
+function fogSubscribe() {
+  const configuration = new SubscriberConfigObject(
+    fogConfig.subscribe_connection,
+    Direction.TO_CLOUD
+  );
+  subscriber(configuration);
+}
+
+function cloudSubscribe() {
+  const configuration = new SubscriberConfigObject(
+    cloudConfig.subscribe_connection,
+    Direction.TO_FOG
+  );
+  subscriber(configuration);
 }
 
 module.exports = {
