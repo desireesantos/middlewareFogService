@@ -1,4 +1,5 @@
-const FOG_BROKER_URL = "mqtt://test.mosquitto.org";
+// const FOG_BROKER_URL = "mqtt://test.mosquitto.org"; //Public Broker
+const FOG_BROKER_URL = "mqtt://192.168.1.4";
 const TOPIC_SUBSCRIB = "MiddlewareFog/edge";
 const TOPIC_PUBLISH = "MiddlewareFog/edge/device";
 const CLIENT_ID = "MiddleFog1000";

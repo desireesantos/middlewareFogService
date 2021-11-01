@@ -1,11 +1,12 @@
 var { mqttInit } = require("./mqtt/initializerMQTT");
 var { coapInit } = require("./coap/initializerCOAP");
 
+
 function start() {
   mqttInit();
-  coapInit();
+  // coapInit();
 }
 
 module.exports = {
-  startProtocols: start(),
+  startProtocols: () => start(),
 };

@@ -36,7 +36,7 @@ function createCloudTopics() {
 function fogSubscribe() {
   const configuration = new SubscriberConfigObject(
     fogConfig.subscribe_connection,
-    Direction.TO_CLOUD
+    Direction.TO_FOG
   );
   subscriber(configuration);
 }
