@@ -4,7 +4,7 @@ var { coapInit } = require("./coap/initializerCOAP");
 
 function start() {
   mqttInit();
-  // coapInit();
+  coapInit();
 }
 
 module.exports = {

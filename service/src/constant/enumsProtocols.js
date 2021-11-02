@@ -5,3 +5,5 @@ module.exports = protocols = {
   DDS: "dds",
   HTTP: "http",
 };
+
+exports.BEST_PROTOCOL = 'bestProtocol';

@@ -8,8 +8,6 @@ function start () {
 }
 
 exports.getBestProtocol = function () {
-  console.log("+++++++++++++++++++++++++++++++++++", protocol.bestProtocol)
-
   return protocol.bestProtocol
 }
 

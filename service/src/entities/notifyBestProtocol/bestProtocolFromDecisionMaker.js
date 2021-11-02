@@ -1,10 +1,12 @@
 var coap = require("coap");
 var { subscribe_connection } = require("./configuration");
+const {LocalStorage} = require('node-localstorage'); 
+var localStorage = new LocalStorage('./scratch'); 
+const {BEST_PROTOCOL} = require('../../constant/enumsProtocols');
 
 class BestProtocol {
   constructor () {
-    var t = this.initialize();
-    console.log("+++++++++++++++++++++++++++++++++++", this.initialize())
+    this.initialize();
   }
 
  bestProtocol = '';
@@ -14,9 +16,9 @@ class BestProtocol {
 
     request.on("response", function (res) {
       res.on("data", function (data) {
-        // console.log("Best Protocol: ", data.toString());
         this.bestProtocol = data.toString();
-        console.log("Best Protocol: ", this.bestProtocol);
+        // console.log("Best Protocol: ", this.bestProtocol);
+        localStorage.setItem(BEST_PROTOCOL, this.bestProtocol)
         return {
           bestProtocol : function() { return this.bestProtocol },
         };

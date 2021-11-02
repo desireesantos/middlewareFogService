@@ -1,4 +1,4 @@
-// const FOG_SERVER_HOSTNAME = "127.0.0.1"; // Local Server
+
 const FOG_SERVER_HOSTNAME = "192.168.1.4";
 const FOG_RESOURCE_SUB_PATHNAME = "middlewareOUTMSG";
 const FOG_RESOURCE_PUB_PATHNAME = "middlewareIN";
