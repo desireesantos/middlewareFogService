@@ -13,7 +13,7 @@ class Translator {
   build(dataToTransport) {
     const { message, protocol, isDataToCloud } = dataToTransport;
 
-    var bestProtocol = this.getBestProtocol(protocol);
+    var bestProtocol = this.getRightProtocolBasedDataFlow(isDataToCloud, protocol);
 
     if (!bestProtocol || !message) {
       throw new Error("Translator not well defined");
@@ -21,7 +21,7 @@ class Translator {
     switch (bestProtocol) {
       case bestProtocol.includes(Protocol.MQTT):
         if (isDataToCloud) {
-          mqttCloud.publish(data);
+          mqttCloud.publish(message);
         }
         else {
           data = { message, qos: this.getQoSFromProtocolName(bestProtocol) }
@@ -45,6 +45,10 @@ class Translator {
   getQoSFromProtocolName(protocolName) {
     extractOnlyNumbers = '/[0-9]/';
     return extractOnlyNumbers.exec(protocolName)[0]
+  }
+
+  getRightProtocolBasedDataFlow(isDataToCloud, protocol){
+    return isDataToCloud ? this.getBestProtocol(protocol) : protocol;
   }
 }
 

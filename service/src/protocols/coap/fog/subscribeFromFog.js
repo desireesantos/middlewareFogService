@@ -21,9 +21,13 @@ function subscribeTopic() {
 }
 
 function translateData(data) {
+  payload = {
+    message: Buffer.from(data).toString(),
+    date: new Date().toISOString()
+  }
   const dataToSend = buildData(
     Protocol.COAP,
-    Buffer.from(data).toString(),
+    payload,
     Direction.TO_CLOUD
   );
   translator.build(dataToSend);

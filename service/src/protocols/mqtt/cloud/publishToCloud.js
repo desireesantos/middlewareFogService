@@ -6,11 +6,16 @@ AWS.config.update(
 var sqs = new AWS.SQS({ apiVersion: "2012-11-05" });
 const config = require("./configuration");
 
-let sendMessageToCloud = (message) => {
+let sendMessageToCloud = (data) => {
+  var payload = {
+    message: data.message,
+    date: data.date.concat(`, ${new Date().toISOString()}`)
+  }
+
   var params = {
     DelaySeconds: config.DELAY_SECONDS,
     QueueUrl: config.QUEUE_URL_PUBLISH,
-    MessageBody: message,
+    MessageBody: payload,
   };
 
   sqs.sendMessage(params, function (err, data) {

@@ -19,9 +19,13 @@ function subscribeTopic(config) {
 }
 
 function translateData(data, config) {
+  payload = {
+    message: Buffer.from(data.message).toString(),
+    date: data.date.concat(`, ${new Date().toISOString()}`)
+  }
   const dataToSend = buildData(
     config.protocol,
-    Buffer.from(data).toString(),
+    payload,
     config.direction
   );
   translator.build(dataToSend);

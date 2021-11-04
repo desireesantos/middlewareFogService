@@ -1,8 +1,12 @@
 var coap = require("coap");
 
-function publishTopic(message, config) {
+function publishTopic(data, config) {
   var req = coap.request(config.publish);
-  req.write(message);
+  payload = {
+    message: Buffer.from(data.message).toString(),
+    date: data.date.concat(`, ${new Date().toISOString()}`)
+  }
+  req.write(payload);
   req.on("response", function (res) {
     res.on("data", function (data) {
       console.log("CoaP publish ", Buffer.from(data).toString());

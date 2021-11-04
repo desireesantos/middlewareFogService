@@ -8,7 +8,12 @@ function sendMessageToFog(data) {
   };
   var mqttClient = mqtt.connect(options);
 
-  mqttClient.publish(TOPIC_PUBLISH, data.message + " -- back to Edge");
+  payload = {
+    message: Buffer.from(data.message).toString(),
+    date: data.date.concat(`, ${new Date().toISOString()}`)
+  }
+
+  mqttClient.publish(TOPIC_PUBLISH, payload + " -- back to Edge");
 }
 
 module.exports = {

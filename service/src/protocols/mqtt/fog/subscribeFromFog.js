@@ -18,9 +18,14 @@ function getDataFromFrog() {
       console.log("[Received] topic: " + topic.toString());
       console.log("[Received] message: " + message.toString());
 
+      payload = {
+        message: Buffer.from(message).toString(),
+        date: new Date().toISOString()
+      }
+
       const dataToSend = buildData(
         Protocol.MQTT,
-        message.toString(),
+        payload,
         Direction.TO_CLOUD
       );
       translator.build(dataToSend);

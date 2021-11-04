@@ -24,9 +24,14 @@ function getMessageFromCloud() {
     handleMessage: async (message) => {
       console.log("Message From Cloud - ", message.Body);
 
+      payload = {
+        message: Buffer.from(message.Body.message).toString(),
+        date: message.Body.date.concat(`, ${new Date().toISOString()}`)
+      }
+
       const dataToSend = buildData(
         Protocol.MQTT,
-        message.Body,
+        payload,
         Direction.TO_FOG
       );
       if (message != null || message != "") translator.build(dataToSend);
