@@ -1,5 +1,7 @@
 var mqtt = require("mqtt");
 var { TOPIC_PUBLISH, FOG_BROKER_URL } = require("./configuration");
+var {writeContentFile} = require('../../../entities/file/writeContent');
+const Protocols = require('../../../constant/enumsProtocols')
 
 function sendMessageToFog(data) {
  const options = {
@@ -14,6 +16,7 @@ function sendMessageToFog(data) {
   }
 
   mqttClient.publish(TOPIC_PUBLISH, payload + " -- back to Edge");
+  writeContentFile(`${Protocols.MQTT} , ${date}`);
 }
 
 module.exports = {

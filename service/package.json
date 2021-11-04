@@ -20,6 +20,7 @@
     "aws-sdk": "^2.862.0",
     "bl": "^5.0.0",
     "coap": "^0.24.0",
+    "fs": "0.0.1-security",
     "https": "^1.0.0",
     "mqtt": "^4.2.6",
     "node-localstorage": "^2.2.1",
