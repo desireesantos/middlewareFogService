@@ -2,6 +2,7 @@ var coap = require("coap");
 
 function publishTopic(data, config) {
   var req = coap.request(config.publish);
+
   payload = {
     message: Buffer.from(data.message).toString(),
     date: data.date.concat(`, ${new Date().toISOString()}`)

@@ -3,12 +3,12 @@ var { publish_connection } = require("./configuration");
 var {writeContentFile} = require("./../../../entities/file/writeContent")
 const Protocols = require('../../../constant/enumsProtocols')
 
-function publishTopic(data) {
+function publishTopic(payload) {
   var req = coap.request(publish_connection);
 
-  payload = {
-    message: Buffer.from(data.message).toString(),
-    date: data.date.concat(`, ${new Date().toISOString()}`)
+  payloadFromFogTo = {
+    message: payload.message,
+    date: payload.date.concat(`, ${new Date().toISOString()}`)
   }
 
   req.write(JSON.stringify(payload));

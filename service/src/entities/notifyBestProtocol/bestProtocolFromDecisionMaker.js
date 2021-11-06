@@ -17,7 +17,6 @@ class BestProtocol {
     request.on("response", function (res) {
       res.on("data", function (data) {
         this.bestProtocol = data.toString();
-        // console.log("Best Protocol: ", this.bestProtocol);
         localStorage.setItem(BEST_PROTOCOL, this.bestProtocol)
         return {
           bestProtocol : function() { return this.bestProtocol },

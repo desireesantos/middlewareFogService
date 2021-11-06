@@ -9,6 +9,7 @@ function subscribeTopic(config) {
 
   request.on("response", function (res) {
     res.on("data", function (data) {
+
       translateData(data, config);
     });
     res.on("end", function () {
@@ -19,13 +20,14 @@ function subscribeTopic(config) {
 }
 
 function translateData(data, config) {
-  payload = {
-    message: Buffer.from(data.message).toString(),
-    date: data.date.concat(`, ${new Date().toISOString()}`)
+  //EdgeToFog
+  payloadFromEdgeToFog = {
+    message: Buffer.from(data).toString(),
+    date: new Date().toISOString()
   }
   const dataToSend = buildData(
     config.protocol,
-    payload,
+    payloadFromEdgeToFog,
     config.direction
   );
   translator.build(dataToSend);

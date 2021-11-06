@@ -38,13 +38,13 @@ class Translator {
   }
 
   getBestProtocol(protocol) {
-    if(localStorage.getItem(BEST_PROTOCOL) != protocol) console.log('--- DEPOIS ->', localStorage.getItem(BEST_PROTOCOL), '--- ANTES: ->', protocol)
+    if(localStorage.getItem(BEST_PROTOCOL).toLocaleLowerCase() != protocol) console.log('--- DEPOIS ->', localStorage.getItem(BEST_PROTOCOL).toLocaleLowerCase(), '--- ANTES: ->', protocol)
     return localStorage.getItem(BEST_PROTOCOL) ? localStorage.getItem(BEST_PROTOCOL) : protocol;
   }
 
   getQoSFromProtocolName(protocolName) {
     extractOnlyNumbers = '/[0-9]/';
-    return extractOnlyNumbers.exec(protocolName)[0]
+    return extractOnlyNumbers.exec(protocolName)[0]   
   }
 
   getRightProtocolBasedDataFlow(isDataToCloud, protocol){
