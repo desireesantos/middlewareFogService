@@ -1,8 +1,8 @@
 var AWS = require("aws-sdk");
 AWS.config.update(
   { region: "sa-east-1",
-  accessKeyId: 'AKIAUVUUUIWJN4RNQMGV',
-  secretAccessKey: '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' });
+  accessKeyId: 'accessKeyId',
+  secretAccessKey: 'secretAccessKey' });
 var sqs = new AWS.SQS({ apiVersion: "2012-11-05" });
 const config = require("./configuration");
 
