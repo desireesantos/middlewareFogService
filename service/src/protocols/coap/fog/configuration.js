@@ -2,7 +2,7 @@
 const FOG_SERVER_HOSTNAME = "192.168.1.4";
 const FOG_RESOURCE_SUB_PATHNAME = "middlewareOUTMSG";
 const FOG_RESOURCE_PUB_PATHNAME = "middlewareIN";
-var build_COAP_Topics = [FOG_RESOURCE_SUB_PATHNAME, FOG_RESOURCE_PUB_PATHNAME, 'bestProtocol'];
+const build_COAP_Topics = [FOG_RESOURCE_SUB_PATHNAME, FOG_RESOURCE_PUB_PATHNAME];
 
 var defaultSubCoapConnection = {
   observe: true,

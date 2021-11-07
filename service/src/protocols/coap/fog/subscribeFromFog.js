@@ -1,4 +1,5 @@
 var coap = require("coap");
+
 const { subscribe_connection } = require("./configuration");
 const Protocol = require("../../../constant/enumsProtocols");
 const Direction = require("../../../constant/enumsFogCloud");

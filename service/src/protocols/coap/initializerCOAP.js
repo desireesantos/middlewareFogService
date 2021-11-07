@@ -3,8 +3,8 @@ const Direction = require("../../constant/enumsFogCloud");
 var SubscriberConfigObject = require("./domain/SubscriberConfigObject");
 var { subscriber } = require("./domain/Subscriber");
 
-const cloudConfig = require("./cloud/configuration");
-const fogConfig = require("./fog/configuration");
+var cloudConfig = require("./cloud/configuration");
+var fogConfig = require("./fog/configuration");
 
 var { createTopics } = require("./domain/CreateTopics");
 var CreateTopicObject = require("./domain/CreateTopicObject");
@@ -27,7 +27,7 @@ function createFogTopics() {
 
 function createCloudTopics() {
   const config = new CreateTopicObject(
-    cloudConfig.publish_connection,
+    cloudConfig.setupCloudPublish(),
     cloudConfig.topics
   );
   createTopics(config);

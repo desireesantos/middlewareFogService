@@ -26,8 +26,8 @@ function translateData(data, config) {
   try {
     json = JSON.parse(data)
     payloadFromEdgeToFog = {
-      'message': json.message ? Buffer.from(json.message).toString(): Buffer.from(data).toString(),
-      'date': json.date ? json.date.concat(`, ${new Date().toISOString()}`) : new Date().toISOString()
+      'message': json.message ? Buffer.from(json.message).toString() : Buffer.from(data).toString(),
+      'date': json.date ? json.date.concat(`, ${new Date().toISOString()}`) : ` ${new Date().toISOString()}`
     }
   } catch (error) {
    separedMessageDate = Buffer.from(data).toString().split(DELIMITER)
@@ -35,8 +35,8 @@ function translateData(data, config) {
    stringdate = JSON.stringify(new Date(dateTime));
 
    payloadFromEdgeToFog = {
-    'message': separedMessageDate[1],
-    'date': stringdate.concat(`, ${new Date().toISOString()}`)
+    'message': Buffer.from(data).toString(),
+    'date': stringdate.concat(` , ${new Date().toISOString()}`)
    }
   }
 

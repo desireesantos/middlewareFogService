@@ -1,13 +1,13 @@
 var coap = require("coap");
 
 function publishTopic(data, config) {
-  var req = coap.request(config.publish);
+  var req = coap.request(config);
 
   payload = {
     'message': data.message,
     'date': data.date.concat(`, ${new Date().toISOString()}`)
   }
-
+  console.log("NNNNNN", payload, config)
   req.write(JSON.stringify(payload));
 
   req.on("response", function (res) {

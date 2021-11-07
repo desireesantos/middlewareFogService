@@ -1,10 +1,11 @@
-const { publish_connection } = require("./configuration");
+const setup = require("./configuration");
 var { publishMessage } = require("../domain/Publisher");
 var PublisherConfigObject = require("./../domain/PublisherConfigObject");
-const config = new PublisherConfigObject(publish_connection);
+const config = new PublisherConfigObject(setup.setupCloudPublish());
 
 function publishTopic(message) {
-  publishMessage(message, config);
+  console.log("-------", config.publish)
+  publishMessage(message, config.publish);
 }
 
 module.exports = {
