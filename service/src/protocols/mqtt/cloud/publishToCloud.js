@@ -1,15 +1,15 @@
 var AWS = require("aws-sdk");
 AWS.config.update(
   { region: "sa-east-1",
-  accessKeyId: 'accessKeyId',
-  secretAccessKey: 'secretAccessKey' });
+  accessKeyId: 'AKIAUVUUUIWJN4RNQMGV',
+  secretAccessKey: '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' });
 var sqs = new AWS.SQS({ apiVersion: "2012-11-05" });
 const config = require("./configuration");
 
 let sendMessageToCloud = (data) => {
   var payload = {
-    message: data.message,
-    date: data.date.concat(`, ${new Date().toISOString()}`)
+    'message': data.message,
+    'date': data.date.concat(`, ${new Date().toISOString()}`)
   }
 
   var params = {
@@ -19,7 +19,7 @@ let sendMessageToCloud = (data) => {
   };
 
   sqs.sendMessage(params, function (err, data) {
-    console.log("--- PUBLISH TO CLOUD --- ");
+    console.log("--- PUBLISH TO CLOUD MQTT--- ");
 
     if (err) {
       console.log("Receive Error", err);

@@ -19,8 +19,8 @@ function getDataFromFrog() {
       console.log("[Received] message: " + message.toString());
 
       payload = {
-        message: Buffer.from(message).toString(),
-        date: new Date().toISOString()
+        'message': Buffer.from(message).toString(),
+        'date': new Date().toISOString()
       }
 
       const dataToSend = buildData(

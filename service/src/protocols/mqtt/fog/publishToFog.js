@@ -11,8 +11,8 @@ function sendMessageToFog(data) {
   var mqttClient = mqtt.connect(options);
 
   payload = {
-    message: Buffer.from(data.message).toString(),
-    date: data.date.concat(`, ${new Date().toISOString()}`)
+    'message': Buffer.from(data.message).toString(),
+    'date': data.date.concat(`, ${new Date().toISOString()}`)
   }
 
   mqttClient.publish(TOPIC_PUBLISH, payload + " -- back to Edge");

@@ -10,6 +10,9 @@ var defaultSubCoapConnection = {
   pathname: FOG_RESOURCE_SUB_PATHNAME,
   method: "get",
   confirmable: "true",
+  options: {
+    Accept: 'application/json'
+  }
 };
 
 var defaultPubCoapConnection = {
@@ -17,6 +20,9 @@ var defaultPubCoapConnection = {
   pathname: FOG_RESOURCE_PUB_PATHNAME,
   method: "put",
   confirmable: "true",
+  options: {
+    Accept: 'application/json'
+  }
 };
 
 module.exports = {

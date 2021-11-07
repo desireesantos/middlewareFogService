@@ -25,8 +25,8 @@ function getMessageFromCloud() {
       console.log("Message From Cloud - ", message.Body);
 
       payload = {
-        message: Buffer.from(message.Body.message).toString(),
-        date: message.Body.date.concat(`, ${new Date().toISOString()}`)
+        'message': Buffer.from(message.Body.message).toString(),
+        'date': message.Body.date.concat(`, ${new Date().toISOString()}`)
       }
 
       const dataToSend = buildData(

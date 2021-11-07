@@ -11,7 +11,7 @@ var CreateTopicObject = require("./domain/CreateTopicObject");
 
 function connectCOAP() {
   createFogTopics();
-  createCloudTopics();
+  // createCloudTopics();
 
   fogSubscribe();
   cloudSubscribe();

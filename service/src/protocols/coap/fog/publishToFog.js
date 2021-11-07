@@ -7,8 +7,8 @@ function publishTopic(payload) {
   var req = coap.request(publish_connection);
 
   payloadFromFogTo = {
-    message: payload.message,
-    date: payload.date.concat(`, ${new Date().toISOString()}`)
+    'message': payload.message,
+    'date': payload.date.concat(`, ${new Date().toISOString()}`)
   }
 
   req.write(JSON.stringify(payload));
@@ -18,7 +18,7 @@ function publishTopic(payload) {
       writeContentFile(`${Protocols.AMQP}, ${payload.date}`);
     });
     res.on("end", function () {
-      console.log("Success");
+      // console.log("Success Coap Publish to Fog");
     });
   });
   req.end();

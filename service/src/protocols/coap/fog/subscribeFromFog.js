@@ -14,7 +14,7 @@ function subscribeTopic() {
       translateData(data);
     });
     res.on("end", function () {
-      console.log("Success");
+      console.log("Success Subscribe from Fog");
     });
   });
   request.end();
@@ -22,8 +22,8 @@ function subscribeTopic() {
 
 function translateData(data) {
   payload = {
-    message: Buffer.from(data).toString(),
-    date: new Date().toISOString()
+    'message': Buffer.from(data).toString(),
+    'date': new Date().toISOString()
   }
   const dataToSend = buildData(
     Protocol.COAP,

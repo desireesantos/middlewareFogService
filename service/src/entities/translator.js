@@ -13,7 +13,8 @@ class Translator {
   build(dataToTransport) {
     const { message, protocol, isDataToCloud } = dataToTransport;
 
-    var bestProtocol = this.getRightProtocolBasedDataFlow(isDataToCloud, protocol);
+    // var bestProtocol = this.getRightProtocolBasedDataFlow(isDataToCloud, protocol);
+    var bestProtocol = protocol;
 
     if (!bestProtocol || !message) {
       throw new Error("Translator not well defined");
@@ -39,7 +40,7 @@ class Translator {
 
   getBestProtocol(protocol) {
     if(localStorage.getItem(BEST_PROTOCOL).toLocaleLowerCase() != protocol) console.log('--- DEPOIS ->', localStorage.getItem(BEST_PROTOCOL).toLocaleLowerCase(), '--- ANTES: ->', protocol)
-    return localStorage.getItem(BEST_PROTOCOL) ? localStorage.getItem(BEST_PROTOCOL) : protocol;
+    return (localStorage.getItem(BEST_PROTOCOL) && (localStorage.getItem(BEST_PROTOCOL) == Protocol.COAP  || localStorage.getItem(BEST_PROTOCOL) == Protocol.MQTT)) ? localStorage.getItem(BEST_PROTOCOL) : protocol;
   }
 
   getQoSFromProtocolName(protocolName) {

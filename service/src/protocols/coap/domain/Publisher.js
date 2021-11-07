@@ -4,16 +4,18 @@ function publishTopic(data, config) {
   var req = coap.request(config.publish);
 
   payload = {
-    message: Buffer.from(data.message).toString(),
-    date: data.date.concat(`, ${new Date().toISOString()}`)
+    'message': data.message,
+    'date': data.date.concat(`, ${new Date().toISOString()}`)
   }
-  req.write(payload);
+
+  req.write(JSON.stringify(payload));
+
   req.on("response", function (res) {
     res.on("data", function (data) {
-      console.log("CoaP publish ", Buffer.from(data).toString());
+      console.log("CoaP publish ", data);
     });
     res.on("end", function () {
-      console.log("Success");
+      // console.log("Success Coap Publish");
     });
   });
   req.end();
