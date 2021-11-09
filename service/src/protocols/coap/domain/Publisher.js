@@ -7,7 +7,6 @@ function publishTopic(data, config) {
     'message': data.message,
     'date': data.date.concat(`, ${new Date().toISOString()}`)
   }
-  console.log("NNNNNN", payload, config)
   req.write(JSON.stringify(payload));
 
   req.on("response", function (res) {
