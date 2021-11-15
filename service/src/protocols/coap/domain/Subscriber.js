@@ -17,6 +17,14 @@ function subscribeTopic(config) {
       // console.log("Success Coap Subscribe");
     });
   });
+
+  request.on('timeout', function(err){
+    console.error("TIMEOUT - ", err);
+  })
+
+  request.on('error', function(err){
+    console.error("ERROR - ", err);
+  })
   request.end();
 }
 
@@ -45,7 +53,9 @@ function translateData(data, config) {
     payloadFromEdgeToFog,
     config.direction
   );
-  if(config.subscribe.pathname == 'middlewareToFog') console.log("END OF DATA FLOW ", payloadFromEdgeToFog, 'CONFIG', config.subscribe)
+  // 'middlewareToFog' 'middlewareOUTMSG'
+  if(config.subscribe.pathname == 'middlewareToFog') 
+  console.log("====>> ", payloadFromEdgeToFog, 'CONFIG', config.subscribe)
   translator.build(dataToSend);
 }
 

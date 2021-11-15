@@ -3,7 +3,7 @@ var fs = require('fs');
 
 function writeFile(content) {
   if (!fs.existsSync('middlefog.csv')) {
-    const header = ["Protocol, Edge, EdgeToFog, FogToCloud, CloudToFog, FogToEdge"];
+    const header = ["Edge, EdgeToFog, FogToCloud, CloudToFog, FogToEdge, BackToEdge"];
     fs.appendFile('middlefog.csv', extractAsCSV(header), 'utf8', function (err) {
       if (err) console.log('Saved!');
     });

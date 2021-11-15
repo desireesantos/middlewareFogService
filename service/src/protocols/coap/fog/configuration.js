@@ -1,4 +1,3 @@
-
 const FOG_SERVER_HOSTNAME = "192.168.1.4";
 const FOG_RESOURCE_SUB_PATHNAME = "middlewareOUTMSG";
 const FOG_RESOURCE_PUB_PATHNAME = "middlewareIN";
@@ -10,6 +9,7 @@ var defaultSubCoapConnection = {
   pathname: FOG_RESOURCE_SUB_PATHNAME,
   method: "get",
   confirmable: "true",
+  multicast: false,
   options: {
     Accept: 'application/json'
   }
@@ -20,6 +20,7 @@ var defaultPubCoapConnection = {
   pathname: FOG_RESOURCE_PUB_PATHNAME,
   method: "put",
   confirmable: "true",
+  multicast: false,
   options: {
     Accept: 'application/json'
   }
