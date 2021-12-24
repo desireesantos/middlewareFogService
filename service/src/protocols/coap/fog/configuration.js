@@ -1,4 +1,6 @@
-const FOG_SERVER_HOSTNAME = "192.168.1.4";
+ var Agent = require('coap').Agent; 
+const FOG_SERVER_HOSTNAME = "192.168.1.36";
+const PORT = "5683";
 const FOG_RESOURCE_SUB_PATHNAME = "middlewareOUTMSG";
 const FOG_RESOURCE_PUB_PATHNAME = "middlewareIN";
 const build_COAP_Topics = [FOG_RESOURCE_SUB_PATHNAME, FOG_RESOURCE_PUB_PATHNAME];
@@ -6,10 +8,11 @@ const build_COAP_Topics = [FOG_RESOURCE_SUB_PATHNAME, FOG_RESOURCE_PUB_PATHNAME]
 var defaultSubCoapConnection = {
   observe: true,
   host: FOG_SERVER_HOSTNAME,
+  port: PORT,
   pathname: FOG_RESOURCE_SUB_PATHNAME,
   method: "get",
   confirmable: "true",
-  multicast: false,
+  agent : new Agent({ type: 'udp4' }),
   options: {
     Accept: 'application/json'
   }
@@ -20,7 +23,6 @@ var defaultPubCoapConnection = {
   pathname: FOG_RESOURCE_PUB_PATHNAME,
   method: "put",
   confirmable: "true",
-  multicast: false,
   options: {
     Accept: 'application/json'
   }
