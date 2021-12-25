@@ -12,7 +12,6 @@ class Translator {
 
   build(dataToTransport) {
     const { message, protocol, isDataToCloud } = dataToTransport;
-
     // var bestProtocol = this.getRightProtocolBasedDataFlow(isDataToCloud, protocol);
     var bestProtocol = protocol;
 

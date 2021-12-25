@@ -21,6 +21,7 @@ function setupCloudPublish() {
     host: FOG_SERVER_HOSTNAME,
     pathname: FOG_RESOURCE_PUB_PATHNAME,
     method: "put",
+    port: PORT,
     confirmable: "true",
     options: {
       Accept: 'application/json'

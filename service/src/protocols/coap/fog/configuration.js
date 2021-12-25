@@ -1,5 +1,5 @@
  var Agent = require('coap').Agent; 
-const FOG_SERVER_HOSTNAME = "192.168.1.36";
+const FOG_SERVER_HOSTNAME = "192.168.1.37";
 const PORT = "5683";
 const FOG_RESOURCE_SUB_PATHNAME = "middlewareOUTMSG";
 const FOG_RESOURCE_PUB_PATHNAME = "middlewareIN";
@@ -22,6 +22,7 @@ var defaultPubCoapConnection = {
   host: FOG_SERVER_HOSTNAME,
   pathname: FOG_RESOURCE_PUB_PATHNAME,
   method: "put",
+  port: PORT,
   confirmable: "true",
   options: {
     Accept: 'application/json'

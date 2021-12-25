@@ -2,11 +2,13 @@ var coap = require("coap");
 
 function publishTopic(data, config) {
   var req = coap.request(config);
+  req.setOption('Block1', Buffer.alloc(0x6))
 
-  payload = {
+  const payload = {
     'message': data.message,
     'date': data.date.concat(`, ${new Date().toISOString()}`)
   }
+  console.log(payload)
   req.write(JSON.stringify(payload));
 
   req.on("response", function (res) {
@@ -14,7 +16,7 @@ function publishTopic(data, config) {
       console.log("CoaP publish ", data);
     });
     res.on("end", function () {
-      // console.log("Success Coap Publish");
+      console.log("Finish Coap Publish");
     });
   });
   req.end();
