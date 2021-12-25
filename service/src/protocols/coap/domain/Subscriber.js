@@ -55,11 +55,11 @@ try {
 } catch (error) {
   separedMessageDate = Buffer.from(data).toString().split(DELIMITER)
   dateTime = parseInt(separedMessageDate[0])
-  stringdate = JSON.stringify(new Date(dateTime));
+  stringDate = new Date(dateTime).toISOString();
 
   payloadFromEdgeToFog = {
   'message': Buffer.from(data).toString(),
-  'date': stringdate.concat(` , ${new Date().toISOString()}`)
+  'date': stringDate.concat(` , ${new Date().toISOString()}`)
   }
 }
 
@@ -70,8 +70,8 @@ const dataToSend = buildData(
 );
 // 'middlewareToFog' 'middlewareOUTMSG'
 // if(config.subscribe.pathname == 'middlewareOUTMSG') 
-// console.log("====>> ", payloadFromEdgeToFog, 'CONFIG', config.subscribe)
-console.log(dataToSend)
+// console.log("====>> ", payloadFromEdgeToFog)
+// console.log("=====", dataToSend);
 translator.build(dataToSend);
 }
 

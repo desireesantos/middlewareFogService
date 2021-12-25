@@ -23,6 +23,7 @@ var defaultPubCoapConnection = {
   pathname: FOG_RESOURCE_PUB_PATHNAME,
   method: "put",
   port: PORT,
+  protocol: 'coap',
   confirmable: "true",
   options: {
     Accept: 'application/json'

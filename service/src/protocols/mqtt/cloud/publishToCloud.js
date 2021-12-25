@@ -17,7 +17,7 @@ let sendMessageToCloud = (data) => {
     QueueUrl: config.QUEUE_URL_PUBLISH,
     MessageBody: payload,
   };
-
+  
   sqs.sendMessage(params, function (err, data) {
     console.log("--- PUBLISH TO CLOUD MQTT--- ");
 

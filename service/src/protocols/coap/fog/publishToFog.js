@@ -1,29 +1,30 @@
-var coap = require("node-coap-client").CoapClient;
+var coap = require("coap");
 var { publish_connection } = require("./configuration");
 var { writeFile } = require("./../../../entities/file/writeContent")
-const Protocols = require('../../../constant/enumsProtocols')
 
 function publishTopic(payload) {
+
+  var req = coap.request(publish_connection);
+  req.setOption('Block1', Buffer.alloc(0x6))
 
   const payloadFromFogTo = {
     'message': payload.message,
     'date': payload.date.concat(`, ${new Date().toISOString()}`)
   }
-  coap
-     .request(
-      generate_resource_url(),  
-      publish_connection.method,
-      payloadFromFogTo
-     )
-     .then(response => {"Published to Cloud", response})
-     .catch(err => { console.error("Subscribe Call Error - GET", err)})
-     ;
 
-  // writeFile(payloadFromFogTo.date);
-}
-const generate_resource_url = () => {
-  const {host, port, pathname} = publish_connection;
-  return `coap://${host}:${port}/${pathname}`;
+  req.write(JSON.stringify(payloadFromFogTo));
+
+  req.on("response", function (res) {
+    res.on("data", function (data) {
+      console.log("CoaP publish ", data);
+    });
+    res.on("end", function () {
+      console.log("Finish Coap Publish");
+    });
+  });
+  req.end();
+
+  writeFile(payloadFromFogTo.date);
 }
 
 module.exports = {

@@ -1,9 +1,9 @@
 const NAME = 'middlefog.txt'
 var fs = require('fs');
 
-function writeFile(content) {
+const writeFile = (content) => {
   if (!fs.existsSync('middlefog.csv')) {
-    const header = ["Edge, EdgeToFog, FogToCloud, CloudToFog, FogToEdge, BackToEdge"];
+    const header = "Edge, EdgeToFog, FogToCloud, CloudToFog, FogToEdge, BackToEdge";
     fs.appendFile('middlefog.csv', extractAsCSV(header), 'utf8', function (err) {
       if (err) console.log('Saved!');
     });
